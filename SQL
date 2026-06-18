@@ -10,6 +10,9 @@ LIMIT 10;
 Always think: 
 1. Which column do I want to summarize? — e.g. amount for order revenue, distance for trip totals
 2. Which operation do I apply? — e.g. SUM for a total, MIN for the smallest value, AVG for a mean
+3. Grouped aggregation adds one new question that we answer first: By which column do we group? - checking for unique values before grouping is super important
+
+Data aggregation is the operation of summarizing data by applying functions (like SUM, AVG, COUNT) to columns to produce single values.
 
 - `SELECT` - tells SQL which column to retrieve
 - `*` - means 'all' columns
@@ -19,10 +22,64 @@ Always think:
 - `LIMIT` - restricts how many rows your query returns (i.e. `LIMIT 10` will only return top 10 that match the code). 
 - Limiting is an essential practice because it prevents slow, expensive queries and protects against mistakes.
 - Query results are temporary snapshots of the data. To keep results for later use, you must save them to your computer or cloud storage.
-- `DISTINCT` is placed immediately after `SELECT` and tells the database to return only the unique values in the specified column, eliminating any repeats.
+- `SELECT DISTINCT` returns the unique values in a column.
+
+- SUM(): Calculates the total of all values in a column
+- AVG(): Calculates the average value in a column
+- MIN(): Finds the minimum value in a column
+- MAX(): Finds the maximum value in a column
+- COUNT(): Counts the number of rows or values
+- COUNT(DISTINCT column): Counts the number of unique values
 
 - Renaming a column - `AS` - gives your category an alias. the alias only affects the display name in your results. It doesn't change the actual column name in the database
 - The alias should be descriptive, valid, and `snake_case`
 - Database servers store and manage databases, while database clients connect to servers and send queries.
 - Multiple users can connect simultaneously to the same database server through various types of clients including web applications and desktop software.
 
+Grouped aggregation works through a three-step process:
+1. Split: Data is divided into groups based on unique values in the grouping column.
+2. Apply: Summary operations are performed on each group separately.
+3. Combine: Results from each group are assembled into a single summary table.
+
+- The `GROUP BY` clause, placed after FROM, groups rows by a specified column.
+
+## ORDER
+
+1. SELECT — what you want
+2. FROM — where it comes from
+3. GROUP BY — how to group it
+4. ORDER BY — how to sort it
+
+SELECT grouping_column,
+       COUNT(column_1) AS total_count,
+       SUM(column_2)   AS total_amount
+FROM table_name
+GROUP BY grouping_column
+ORDER BY total DESC;
+
+SELECT DISTINCT and GROUP BY together is redundant here — SELECT DISTINCT alone is enough to get unique combinations.
+Always include the group size in your summary tables
+Whether a group is large enough? - Should be 30 and above
+
+## Multi-column Grouping & Sorting
+
+SELECT grouping_col1,
+       grouping_col2,
+       COUNT(column_1)          AS metric_1,
+       COUNT(DISTINCT column_2) AS metric_2,
+       SUM(column_3)            AS metric_3,
+       AVG(column_3)            AS metric_4
+FROM table_name
+GROUP BY grouping_col1, grouping_col2;
+
+Too many grouping columns can lead to:
+1. An overwhelming number of summary values that are challenging to interpret
+2. Smaller group sizes that produce less reliable summary statistics
+
+SELECT grouping_col1,
+       grouping_col2,
+       COUNT(column_1) AS metric_1,
+       SUM(column_2)   AS metric_2
+FROM table_name
+GROUP BY grouping_col1, grouping_col2
+ORDER BY grouping_col1 ASC, metric_2 DESC;
