@@ -1,4 +1,28 @@
 # SQL NOTES 
 ## Associate Data Analyst in SQL 
 
-- 
+SELECT column_1,
+       column_2
+FROM table_1
+ORDER BY column_1 DESC
+LIMIT 10;
+
+Always think: 
+1. Which column do I want to summarize? — e.g. amount for order revenue, distance for trip totals
+2. Which operation do I apply? — e.g. SUM for a total, MIN for the smallest value, AVG for a mean
+
+- `SELECT` - tells SQL which column to retrieve
+- `*` - means 'all' columns
+- `FROM` - tells SQL which table to get the data from
+- whatever column name you put after select, is what you get back
+- `ORDER BY` - will give us a rating from lowest to highest. To go from highest to lowest - `ORDER BY something DESC` - flips order.
+- `LIMIT` - restricts how many rows your query returns (i.e. `LIMIT 10` will only return top 10 that match the code). 
+- Limiting is an essential practice because it prevents slow, expensive queries and protects against mistakes.
+- Query results are temporary snapshots of the data. To keep results for later use, you must save them to your computer or cloud storage.
+- `DISTINCT` is placed immediately after `SELECT` and tells the database to return only the unique values in the specified column, eliminating any repeats.
+
+- Renaming a column - `AS` - gives your category an alias. the alias only affects the display name in your results. It doesn't change the actual column name in the database
+- The alias should be descriptive, valid, and `snake_case`
+- Database servers store and manage databases, while database clients connect to servers and send queries.
+- Multiple users can connect simultaneously to the same database server through various types of clients including web applications and desktop software.
+
