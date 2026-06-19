@@ -24,8 +24,23 @@ Data aggregation is the operation of summarizing data by applying functions (lik
 - Query results are temporary snapshots of the data. To keep results for later use, you must save them to your computer or cloud storage.
 - `SELECT DISTINCT` returns the unique values in a column.
 
-- SUM(): Calculates the total of all values in a column
-- AVG(): Calculates the average value in a column
+## WHERE CLAUSE
+- `WHERE` - is to use comparison operators such as `>` `<` `<=` `>=` `=` `<>` - not equal to, - to filter numbers. You can also use these for strings (with single quotation marks). This clause comes after the FROM statement (but before LIMIT)
+- `OR` - similar to coding (when we want to filter multiple criteria). Combine with WHERE. 
+- `AND` - similar to coding (when we want to filter multiple criteria). Combine with WHERE. 
+- `BETWEEN` - filtering values between a specific range. It is inclusive - just short term. HAs to be used with WHERE first. 
+- If using multiple conditions you'll need to use paranthesis. 
+
+- `LIKE` - used to search for a pattern in a field of text. It is matched with `%` which matches zero, one or many characters within a text OR `_` which matches a single character. 
+- `NOT LIKE` - used to find matches that don't fit the specific pattern. Same wildcards as above. 
+Examples: `LIKE '%r'` will find all those whos name ends in `r` and `LIKE '__t%'` will find records where the third character is t. 
+- `IN` - operator allows us to specify multiple values in a 'where' clause. 
+
+- `IS NULL` with the WHERE clause is important to see what information from our data is missing. 
+- `IS NOT NULL` with the WHERE clause will tell us only get examples returned that are not null. 
+
+- SUM(): Calculates the total of all values in a column - can only use on numerical fields.
+- AVG(): Calculates the average value in a column - can only use on numerical fields. 
 - MIN(): Finds the minimum value in a column
 - MAX(): Finds the maximum value in a column
 - COUNT(): Counts the number of rows or values
