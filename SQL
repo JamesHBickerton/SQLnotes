@@ -45,7 +45,8 @@ Examples: `LIKE '%r'` will find all those whos name ends in `r` and `LIKE '__t%'
 - MAX(): Finds the maximum value in a column (for letters MAX would be Z whereas min would be A)
 - COUNT(): Counts the number of rows or values
 - COUNT(DISTINCT column): Counts the number of unique values
-- ROUND(): - ROUND(number_to_round, decimal_places) - I.E. - `SELECT ROUND(AVG(budget), 2) AS average_budget`
+- ROUND(): - ROUND(number_to_round, decimal_places) - I.E. - `SELECT ROUND(AVG(budget), 2) AS average_budget` - the second number is optional. 
+A minus number in the second number meaning it will round to the left, rather than the right. 
 
 - Renaming a column - `AS` - gives your category an alias. the alias only affects the display name in your results. It doesn't change the actual column name in the database
 - The alias should be descriptive, valid, and `snake_case`
