@@ -100,3 +100,7 @@ SELECT grouping_col1,
 FROM table_name
 GROUP BY grouping_col1, grouping_col2
 ORDER BY grouping_col1 ASC, metric_2 DESC;
+
+## HAVING vs WHERE: 
+1. WHERE filters individual records, whereas HAVING filters grouped records. 
+2. I.e. "In what years was the average film duration >2 hours" - usually indicated grouped. 
